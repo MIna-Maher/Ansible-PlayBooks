@@ -7,4 +7,4 @@
       - vars.yml
   tasks: 
   - name: install lynx app on apache-web-server 
-    yum: pkg=lynx state=installed 
+    yum: pkg=lynx state=removed update_cache=yes  
