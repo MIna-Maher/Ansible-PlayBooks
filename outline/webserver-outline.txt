@@ -6,7 +6,7 @@ This is the outline for tasks that we want the playbook to do :
 - install apache web server 
 - start the web service
 - verify the website is running 
-- install client software (telnet,lynx)
+- install client software (lynx)
 
 - log all the packages installed on the system 
 - date/time stamp for when the playbook ends
