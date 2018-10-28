@@ -16,10 +16,10 @@
       yum: pkg=httpd state=installed 
       notify: restart httpd service
 
-    - name: verify the website is running 
-      command: systemctl status httpd
-      register: output
-    - debug: var=output
+    #- name: verify the website is running 
+    #  command: sudo systemctl status httpd
+    #  register: output
+    #- debug: var=output
 
     - name: install client software lynx
       yum: pkg=lynx state=installed
