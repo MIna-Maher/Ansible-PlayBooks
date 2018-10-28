@@ -6,9 +6,9 @@
   gather_facts: no
   vars: 
   vars_prompt: 
-   - name: "pkg"
+   - name: "pkg_name"
      prompt: enter the desired package name
   tasks:
-   - name: install desired app
-     action: yum name={{ pkg }} state=installed update_cache=yes
+   - name: install desired app {{ pkg_name }}
+     action: yum name={{ pkg_name }} state=installed update_cache=yes
 
