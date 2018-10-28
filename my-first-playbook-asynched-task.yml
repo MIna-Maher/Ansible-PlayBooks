@@ -1,0 +1,34 @@
+--- # my First PlayBook in Ansible
+##Target-Section
+- hosts: all
+  user: ansible
+  sudo: yes
+  connection: ssh        
+  gather_facts: no
+## variable-section
+  vars: 
+    playbook_ver: 1.0.0b
+  vars_files: 
+   - config/webserver.yml
+  vars_prompt: 
+   - name: web-domain
+     prompt: Enter your WEB Domain >>
+##Task-section
+  tasks:
+   - name: install lynx web browser
+     action: yum name=lynx state=installed
+     async: 300
+     poll: 3
+   - name: remove telnet client
+     action: yum name=telnet state=absent
+     async: 300
+     poll: 3
+##Handler-section
+   - name: install httpd service on apache client
+     action: yum name=httpd state=installed
+     async: 300
+     poll: 3
+     notify: Restart httpd service
+  handlers:
+   - name: Restart httpd service
+     action: service name=httpd enabled=yes state=restarted 

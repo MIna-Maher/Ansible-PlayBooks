@@ -1,0 +1,14 @@
+# playbook to install lynx app on apache-web-client
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars: 
+  vars_prompt: 
+   - name: "pkg"
+     prompt: enter the desired package name
+  tasks:
+   - name: install desired app
+     action: yum name={{ pkg }} state=installed update_cache=yes
+
