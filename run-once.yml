@@ -1,0 +1,12 @@
+--- # run once task example
+ - hosts: all
+   user: ansible
+   sudo: yes
+   connection: ssh
+   gather_facts: no 
+   tasks: 
+   - name: logging the up time for the server groups
+     raw: /usr/bin/uptime >> /home/ansible/uptime.log
+   - name: Running the task only one time at the first server on the group
+     raw: ls -la /dev/  >> /home/ansible/listed-dir.list
+     run_once: true

@@ -1,0 +1,8 @@
+--- #Lookup playbook example
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+   - debug: msg="{{ lookup ('env','MAIL') }} is the value listed " 
