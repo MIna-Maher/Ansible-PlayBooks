@@ -1,0 +1,13 @@
+--- # when playbook Example
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  gather_facts: yes
+  tasks:
+   - name: install httpd server if the OS is RedHat/Centos
+     command: yum install -y httpd
+     when: ansible_os_family == "RedHat"
+   - name: install apache2 server if the OS is Debian/Ubuntu
+     command: apt-get -y install httpd
+     when: ansible_os_family == "Debian"
+

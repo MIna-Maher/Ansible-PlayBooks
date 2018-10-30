@@ -1,0 +1,10 @@
+--- ## Master yaml file
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks: 
+   - include: plays/packages.yml
+   - name: verify if the pks have been installed or not
+     raw: yum list installed | grep -i telnet > /home/ansible/pkg.log

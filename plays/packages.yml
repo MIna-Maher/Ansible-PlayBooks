@@ -1,0 +1,4 @@
+- name: install lynx package
+  action: yum name=lynx state=latest
+- name: install telnet package
+  yum: pkg=telnet state=installed

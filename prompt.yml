@@ -1,0 +1,13 @@
+--- # prompt pkg to user to be installed 
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  vars_prompt:
+   - name: installpkg
+     prompt: please enter name of the pkg to be installed ??
+     default: telnet
+     private: no # for secret typing to user when enter the pkg name  
+  tasks: 
+   - name: install the desired package
+     yum: pkg={{ installpkg }} state=installed

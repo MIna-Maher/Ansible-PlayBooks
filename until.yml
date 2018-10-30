@@ -1,0 +1,15 @@
+--- # until Example 
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  tasks: 
+   - name: installing httpd service
+     yum: pkg=httpd state=latest
+   - name: verifying the state of the httpd service 
+     shell: systemctl status httpd
+     register: result
+     until: result.stdout.find("active (running)") != -1
+     retries: 10
+     delay: 5
+   - debug: var=result
