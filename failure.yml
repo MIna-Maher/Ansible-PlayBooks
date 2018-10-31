@@ -1,0 +1,13 @@
+--- ## Basic Error Handling
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks: 
+   - name: task will be failed
+     raw: /bin/false
+     ignore_errors: yes  # default value is NO
+   - name: install telnet pkg
+     yum: pkg=telnet state=installed
+    

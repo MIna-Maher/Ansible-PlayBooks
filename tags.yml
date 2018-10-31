@@ -1,0 +1,18 @@
+--- ## Tags Example
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no 
+  tasks: 
+    - name: install telnet and lynx pkgs
+      yum: name={{ item }}
+      with_items:
+       - telnet
+       - lynx
+      tags: 
+       - packages
+    - name: verifying installation of Telnet
+      raw: yum list installed | grep -i telnet > /home/ansible/pkgs.log
+      tags: 
+       - log

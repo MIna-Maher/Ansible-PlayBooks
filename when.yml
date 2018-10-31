@@ -1,5 +1,5 @@
 --- # when playbook Example
-- hosts: apache-web-client
+- hosts: ubuntu-server
   user: ansible
   sudo: yes
   gather_facts: yes
