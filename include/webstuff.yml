@@ -1,0 +1,13 @@
+--- ## Master PlayBook (breaking the playbook into Discrete plays
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  vars_files: 
+   - variables/variables.yml
+  tasks: 
+   - include: packages/packages.yml
+   - include: commands/commands.yml
+  handlers:
+   - include: handlers/handlers.yml
