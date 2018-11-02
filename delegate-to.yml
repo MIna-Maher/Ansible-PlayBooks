@@ -1,0 +1,12 @@
+--- ## delegate to Example
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: ping from ubuntu to my pc
+      raw: ping -c 4 192.168.245.1 > /home/ansible/ping.log
+      delegate_to: ubuntu-server
+    - name: install telnet pkg on apache web client
+      yum: pkg=telnet state=latest

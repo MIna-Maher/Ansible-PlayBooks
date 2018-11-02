@@ -1,0 +1,14 @@
+--- # testing local  action module
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  connection: ssh
+  tasks: 
+   - name: ping to the ubuntu server from local host not from apache client
+     local_action: command ping -c 4 192.168.245.165
+     register: output
+   - debug: var=output
+   - name: installing telnet pkg on remote host
+     yum: name=telnet state=installed
+    

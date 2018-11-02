@@ -1,0 +1,16 @@
+--- # Start-At-Example
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks: 
+   - name: install telnet 
+     yum: pkg=telnet state=latest
+   - name: install lynx
+     yum: pkg=lynx state=latest
+   - name: list home
+     command: ls /home
+     register: output
+   - debug: var=output
+
