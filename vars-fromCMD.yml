@@ -7,3 +7,5 @@
   tasks:
   - name: Install some software
     yum: pkg={{ pkg }} state=latest
+
+                                             ##ansible-playbook vars-fromCMD.yml --extra-vars "hosts=apache-web-client user=ansible pkg=telnet"
