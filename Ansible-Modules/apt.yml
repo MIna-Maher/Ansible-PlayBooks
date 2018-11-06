@@ -1,0 +1,9 @@
+--- ## apt-module
+- hosts: ubuntu-server
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+   - name: install apache2 service 
+     apt: name=apache2 state=installed

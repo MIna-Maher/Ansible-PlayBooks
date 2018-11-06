@@ -1,0 +1,9 @@
+--- ## PlayBook to upgrade all pkgs in the system
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks: 
+   - name: upgrade all the pkgs using yum module
+     action: yum pkg=* state=latest
