@@ -1,0 +1,12 @@
+--- # ANsible Service Module Example
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes  # better to detect the remote server dist
+  tasks: 
+   - name: install httpd
+     action: yum pkg=httpd state=installed update_cache=yes
+   - name: starting and enable after reboot the httpd service
+     service: name=httpd state=restarted enabled=yes
+
