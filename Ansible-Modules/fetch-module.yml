@@ -1,0 +1,11 @@
+--- # Ansible Fetch Module
+- hosts: all
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks: 
+   - name: fetching the host file with the default behaviour create dir
+     fetch: src=/etc/hosts dest=/home/ansible
+   - name: Fetching the host files with gathered fact ansible-hostname
+     fetch: src=/etc/hosts dest=/home/ansible/prefix_{{ ansible_hostname }} flat=yes

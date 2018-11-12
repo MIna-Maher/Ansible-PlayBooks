@@ -1,0 +1,14 @@
+--- ## Ansible Debug Module
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes 
+  connection: ssh
+  gather_facts: no
+  tasks: 
+   - name: install Httpd service
+     yum: name=httpd state=latest
+   - debug: msg="Finished the installation of httpd"
+   - name: running the uptime command
+     shell: uptime
+     register: output
+   - debug: var=output
