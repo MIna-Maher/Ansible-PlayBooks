@@ -8,4 +8,4 @@
    - name: copying file from local machine to remote host
      action: copy src=~/files/test2.txt dest=/home/ansible/test2.txt mode=0777 owner=ansible group=ansible  ##default root owner and root group
    - name: Copying file with backup attribute
-     action: copy src=~/files/test4.txt dest=/home/ansible/test4.txt mode=0700 owner=ansible group=ansible backup=yes
+     action: copy src=~/files/test4.txt dest=/home/ansible/test4.txt mode=0700 owner=ansible group=ansible 
