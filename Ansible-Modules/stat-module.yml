@@ -1,0 +1,17 @@
+--- ## Ansible-Stat-Module
+- hosts: apache-web-client
+  user: ansible 
+  sudo: yes
+  connection: ssh
+  gather_facts: no 
+  tasks: 
+  - name: gathering the stat of /home/ansible/mina.txt file on remote host
+    stat: path=/home/ansible/mina.txt
+    register: p
+  - debug: msg="This file exists and regular file"
+    when: p.stat.exists and p.stat.isreg
+  - name: gathering the stat of /home/ansible/abc Directory on remote host
+    stat: path=/home/ansible/abc
+    register: dir
+  - debug: msg=" This Directory exists and dir"
+    when: dir.stat.isdir is defined and dir.stat.isdir

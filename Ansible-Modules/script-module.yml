@@ -1,0 +1,10 @@
+--- ## script-Module
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no 
+  tasks: 
+    ## executing the script from local server to remote host
+    - script: /home/ansible/ansible-playBooks/Ansible-Modules/system_uptime.sh >>/home/ansible/uptime.log
+

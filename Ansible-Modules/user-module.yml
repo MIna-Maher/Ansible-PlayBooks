@@ -1,0 +1,11 @@
+--- ## Ansible-User-Module
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks: 
+   - name: create new user and set it's attributes
+     user: name=tst-apache comment="Testing User For Apache" shell=/bin/bash groups=mina append=yes
+   - name: delete user1 USer
+     user: name=user1 state=absent append=yes 
