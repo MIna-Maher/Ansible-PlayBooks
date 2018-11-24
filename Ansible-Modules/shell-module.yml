@@ -1,0 +1,12 @@
+--- ## shell-Module Example
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  tasks: 
+   - name: running shell command on remote host
+     shell: uptime >> uptime.log
+     args: 
+      chdir: log/ ## changing dir before running the shell command
+      creates: uptime.log  ## this playbook will be run if the file Doesn't exists
+  

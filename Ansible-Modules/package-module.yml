@@ -1,0 +1,14 @@
+--- ## package module Example
+- hosts: apache-web-client,ubuntu-server
+  user: ansible
+  sudo: yes
+  connection: ssh
+  vars:
+    apache: apache2
+  tasks: 
+   - name: install ntpdate to both centos/ubuntu Dists
+     package: name=ntpdate state=latest
+   - name: remove apache2 
+     package: 
+       name: "{{ apache }}"
+       state: absent

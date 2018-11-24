@@ -1,0 +1,9 @@
+--- ## ANsible-module-Example
+- hosts: ubuntu-server
+  user: ansible
+  sudo: yes
+  connection: ssh 
+  gather_facts: no
+  tasks: 
+   - name: copy and unarchive my source Code
+     unarchive: src=/home/ansible/source-code/archived-output.zip dest=/home/ansible/copydir copy=yes #if copy=no will look for the src archive at the target
