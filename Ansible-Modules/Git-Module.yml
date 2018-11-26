@@ -1,0 +1,12 @@
+--- ##T MODULE EXAMPLE
+- hosts: apache-web-client
+  user: ansible
+  connection: ssh
+  gather_facts: no
+  tasks:
+   - name: Checking out a git repo on the remote server
+     git: 
+      repo: https://github.com/MIna-Maher/hello-world.git
+      dest: /home/ansible/git-Dir/
+      update: yes
+      archive: /tmp/git-Dir-Zipped.zip 

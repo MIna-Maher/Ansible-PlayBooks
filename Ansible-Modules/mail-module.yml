@@ -1,0 +1,13 @@
+--- ## Mail-Module-Example
+- hosts: apache-web-client
+  user: ansible
+  connection: ssh
+  gather_facts: yes
+  tasks: 
+   - name: Send an email to ansible user indicating build completion
+     mail: 
+       host: localhost
+       port: 25 
+       to: Mina Maher <m.maher.eng2014@gmail.com>
+       subject: Ansible-GMail
+       body: System {{ ansible_hostname }} has been sent from Gmail
