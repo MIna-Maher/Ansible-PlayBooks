@@ -1,0 +1,10 @@
+- name: Install Httpd Web Server on Redhat/Centos Distribution
+  yum: pkg=httpd state=latest
+  when: ansible_os_family == "RedHat"
+  notify: Restart HTTPD
+  ignore_errors: yes
+- name: Install Web Server on Debian/Ubuntu Dist
+  apt: pkg=apache2 state=latest
+  when: ansible_os_family == "Debian"
+  notify: Restart Apache2
+  ignore_errors: yes
