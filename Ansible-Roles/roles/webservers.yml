@@ -1,0 +1,13 @@
+--- ## webservrs Ansible MASTER PlayBook
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  pre_tasks: 
+  - name: indicate when the ROLE will start ## will be run before ROLE
+    raw: date > /home/ansible/ROLE-Start.log  
+  roles: 
+   - webservers
+  post_tasks:
+  - name: indicate when the ROLE will ENDS ## will be run After ROLE
+    raw: date > /home/ansible/ROLE-End.log
