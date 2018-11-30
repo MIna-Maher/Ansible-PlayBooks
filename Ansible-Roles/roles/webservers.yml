@@ -1,5 +1,5 @@
 --- ## webservrs Ansible MASTER PlayBook
-- hosts: apache-web-client
+- hosts: apache-web-client,ubuntu-server
   user: ansible
   sudo: yes
   connection: ssh

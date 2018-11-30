@@ -1,6 +1,6 @@
 - name: Restart HTTPD
-  service: name=httpd state=restarted
+  service: name={{ redhat_apache }} state=restarted enabled=yes
 - name: Restart Apache2
-  service: name=apache2 state=restarted
+  service: name={{ debian_apache }} state=restarted enabled=yes
 
 
