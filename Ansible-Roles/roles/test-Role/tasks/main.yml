@@ -1,0 +1,15 @@
+- name: install apache web server
+  yum: pkg=httpd state=installed
+  notify: Restart HTTPD
+- name: install list of pkgs 
+  yum: pkg={{ item }} state=latest
+  with_items: 
+   - telnet
+   - lynx
+- name: verify the website is running
+  command: systemctl status httpd
+  register: result
+  ignore_errors: yes
+- name: log all the packages installed on the system
+  raw: yum list installed > /home/ansible/installed-pkgs.log
+ 

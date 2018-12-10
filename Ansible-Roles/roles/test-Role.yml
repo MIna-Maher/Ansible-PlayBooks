@@ -1,0 +1,25 @@
+--- # translation from outline to playBook
+## target-section
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+### Task-Section
+  tasks:
+  - name: date/time stamp for when the playbook starts
+    raw: /usr/bin/date > /home/ansible/playbook-starts.log ## this is remote Dir
+  - name: install apache web server 
+    yum: pkg=httpd state=installed 
+  - name: start the web service 
+    service: name=httpd state=restarted
+  - name: verify the website is running 
+    command: systemctl status httpd
+    register: output
+  - debug: var=output
+  - name: install client software lynx
+    yum: pkg=lynx state=installed
+  - name: log all the packages installed on the system 
+    raw: yum list installed > /home/ansible/installed-pkgs.log
+  - name: date/time stamp for when the playbook ends
+    raw : /usr/bin/date > /home/ansible/playbook-ends.log

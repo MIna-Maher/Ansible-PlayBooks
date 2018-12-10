@@ -1,0 +1,18 @@
+--- ## Master playBook for Test_role
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  pre_tasks: 
+   - name: date/time stamp for when the playbook starts
+     command: /usr/bin/date
+     register: timestamp_start
+   - debug: var=timestamp_start
+  roles:
+   - test-Role
+  post_tasks:
+   - name: date/time stamp for when the playbook ends
+     command: /usr/bin/date
+     register: timestamp_end
+   - debug: var=timestamp_end
