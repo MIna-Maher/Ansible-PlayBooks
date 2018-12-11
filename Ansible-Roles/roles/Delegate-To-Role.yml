@@ -1,0 +1,12 @@
+--- ## Master Playbook For Testing Delegate-To Role in pre_tasks
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  pre_tasks: 
+   - name: ping from localhost to Ubuntu Server
+     raw: /usr/bin/ping -c 4 192.168.245.165 >> /home/ansible/ansible-playBooks/Ansible-Roles/roles/ping.out
+     delegate_to: localhost 
+  roles:
+   - test-Role
