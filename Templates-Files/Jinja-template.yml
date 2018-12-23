@@ -1,0 +1,13 @@
+--- ## Template Module for jinja2 Templating 
+- hosts: apache-web-client,ubuntu-server
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  vars:
+    connectionType: parameko
+    userName: minaMaher
+    userPassword: password123456
+  tasks: 
+   - name: Install the configuration file customized for the system
+     template: src=test.conf.j2 dest=/home/ansible/copied-test.conf owner=ansible mode=777
