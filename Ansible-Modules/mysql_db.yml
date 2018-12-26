@@ -1,0 +1,13 @@
+--- ## Example for mysql_db Module for creating new DB on the remote wxisting mysql host
+- hosts: apache-web-client
+  user: ansible
+  sudo: yes
+  gather_facts: yes
+  tasks: 
+   - name: Install the Python MySQL Support Libraries
+     yum: pkg=MySQL-python state=latest
+   - name: Create a New Test DB called MyNewMINA-DB
+     mysql_db: name=MyNewMINA-DB state=present login_user=root login_password=123456
+   - name: creating dump for MyNewMINA-DB database 
+     mysql_db: name=MyNewMINA-DB state=dump target=/home/ansible/minaDB-Backup.sql login_user=root login_password=123456
+  ## for restoring backup state=import
