@@ -1,0 +1,50 @@
+--- ## ANsible PlayBook for deploying Database Server
+- hosts: application-client
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  vars:
+    dbserver_pkg: mariadb-server
+    dbcllient_pkg: mariadb
+    dbinstalldir: /var/lib/mysql/
+    dbinstancename: MyDBTest
+    dbdistribution: RedHat
+    ##mysql_root_password: 123456789
+  vars_prompt:
+      - name: mysql_root_password
+        prompt: Please Enter The Password for MariaDB Root user>>
+  tasks:
+    - name: Install MariaDB-Server
+      yum: pkg=mariadb-server state=latest
+    - name: Install MariaDB-client
+      yum: pkg=mariadb state=latest
+    - name: install MySQL-python pkg
+      yum: pkg=MySQL-python state=latest
+    - name: start and enable MariaDB-Server
+      service: name=mariadb state=restarted enabled=yes
+    - name: Creating WORDPRESS DB with the Annonymous User
+      mysql_db: name=WORDPRESSDB state=present
+      tags: 
+       - database
+    - name: Check if the root password is previously set or NOT
+      shell: mysqladmin -u root status
+      changed_when: false
+      failed_when: false
+      register: root_pwd_check
+      tags: check
+    - debug: var=root_pwd_check
+      tags: root-password
+    
+    - name: Set MariaDB root password for the first time
+      mysql_user: name=root password={{ mysql_root_password }} host=localhost state=present
+      ##when: {{root_pwd_check }} == "0"
+      tags: set-password
+    - name: Remove The Annynmous User
+      mysql_user: name='' login_user=root login_password={{ mysql_root_password }} host=localhost state=absent
+    - name: Remove The Test Database
+      mysql_db: name=test state=absent login_user=root login_password={{ mysql_root_password }} 
+      tags:
+        remove-test-db
+
+      
