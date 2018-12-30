@@ -7,7 +7,7 @@
    - name: Install the Python MySQL Support Libraries
      yum: pkg=MySQL-python state=latest
    - name: Create a New Test DB called MyNewMINA-DB
-     mysql_db: name=MyNewMINA-DB state=present login_user=root login_password=123456
+     mysql_db: name=MyNewMINA-DB state=present 
    - name: creating dump for MyNewMINA-DB database 
      mysql_db: name=MyNewMINA-DB state=dump target=/home/ansible/minaDB-Backup.sql login_user=root login_password=123456
   ## for restoring backup state=import
