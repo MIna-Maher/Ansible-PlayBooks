@@ -1,0 +1,17 @@
+# Master Task for installing and configuring MariaDB,Apache & WORDPRESS
+- name: Installing PHP and other pkgs
+  yum: pkg={{ item }}  state=latest
+  with_items:
+   - php
+   - php-common
+   - php-mysql
+   - php-gd
+   - php-xml
+   - php-mbstring
+   - php-mcrypt
+   - php-xmlrpc
+   - unzip
+   - wget
+- include: DataBase.yml
+- include: webserver.yml
+- include: wordpress.yml

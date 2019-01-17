@@ -1,0 +1,14 @@
+ ## Installing WordPress on LAMP Stack on Redhat/Centos Releases 
+
+- install php php php-common php-mysql php-gd php-xml php-mbstring php-mcrypt php-xmlrpc unzip wget
+- php-fpm
+- php-mysql
+- php-xml
+- Install mariadb mariadb-server
+- Remove anonymous users
+- Remove the test database
+- Generate a new root password
+- Output the new root password to the screen
+- Installing Apache Web Server
+- start and enable the the web Server
+
